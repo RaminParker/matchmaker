@@ -27,42 +27,59 @@ In dem Jupiter Notebook (Python) findest du Anmeldungen aus einem früheren Even
 Data columns (total 11 columns):
  #   Column             Non-Null Count  Dtype  
 ---  ------             --------------  -----  
- 0   ID                 205 non-null    object 
- 1   Name               205 non-null    object 
- 2   FoodPreference     205 non-null    int64  
- 3   Age                205 non-null    int64  
- 4   Sex                205 non-null    object 
- 5   Kitchen            205 non-null    int64  
- 6   Kitchen_Story      205 non-null    float64
- 7   Kitchen_Longitude  104 non-null    float64
- 8   Kitchen_Latitude   104 non-null    float64
- 9   agerange           203 non-null    object 
- 10  count_wg           104 non-null    float64
+ 0   ID                 237 non-null    object 
+ 1   Name               237 non-null    object 
+ 2   FoodPreference     237 non-null    object 
+ 3   Age                237 non-null    int64  
+ 4   Sex                237 non-null    object 
+ 5   Kitchen            237 non-null    object 
+ 6   Kitchen_Story      187 non-null    float64
+ 7   Kitchen_Longitude  157 non-null    float64
+ 8   Kitchen_Latitude   157 non-null    float64
+ 9   ID_2               73 non-null     object 
+ 10  Name_2             73 non-null     object 
+ 11  Age_2              73 non-null     float64
+ 12  Sex_2              73 non-null     object
+dtypes: float64(4), int64(1), object(8)
 ````
 
-- ID: Einzigartiger Hashwert
-- Name: Vollständiger Name des Teilnehmenden
-- FoodPreference: Essensvorliebe
+- ``ID``: Einzigartiger Hashwert
+- ``Name``: Vollständiger Name des Teilnehmenden
+- ``FoodPreference``: Essensvorliebe
     - 0: Fleischis
     - 1: Egali (Personen ohne Präferenz)
     - 2: Vegans
     - 3: Veggies
-- Age: Alter
-- Sex: Geschlecht
+- ``Age``: Alter
+- ``Sex``: Geschlecht
     - female
     - male
     - other
-- Kitchen: Wird eine Küche als Austragungsort bereitgestellt?
+- ``Kitchen``: Wird eine Küche als Austragungsort bereitgestellt?
     - 0: Keine Küche vorhanden. Somit keine Gastgeberbereitschaft.
     - 1: Küche vorhanden. 
     - 2: Küche vorhanden, soll aber nur genutzt werden wenn es absolut gar nicht anders geht (Notfall-Küche)
-- Kitchen_Story: Stockwerk in dem die Person wohnt. Wert ist auch gegeben wenn keine Küche zum kochen angegeben wurde (``Kitchen = 0``)
-- Kitchen_Longitude: Ortskoordinaten des Wohnorts
-- Kitchen_Latitude: Ortskoordinaten des Wohnorts
-- agerange: Altersstufe
-- count_wg: Anzahl weiterer Teilnehmenden mit den selben Ortskoordinaten. Evtl WG-Mitbewohner. 
+- ``Kitchen_Story``: Stockwerk in dem die Person wohnt. Wert ist auch gegeben wenn keine Küche zum kochen angegeben wurde (``Kitchen = 0``)
+- ``Kitchen_Longitude``: Ortskoordinaten des Wohnorts
+- ``Kitchen_Latitude``: Ortskoordinaten des Wohnorts
+
 
 Der Toy-Datensatz wird in dem Jupyter Notebook geladen. Die dazugehörige csv-Datei findest du in dem Ordner ``data``.
+
+Aus dem Datensatz leiten wir 2 Spalten ab:
+- ``agerange``: Altersstufe, also das Alter in verschieden großen Bins
+- ``count_wg``: Anzahl weiterer Teilnehmenden mit den selben Ortskoordinaten. Evtl WG-Mitbewohner. 
+
+Diese Spalten hängen wir einfach an den Datensatz mit dran.
+
+ Wie wird erfasst, welche Teilnehmenden in einer WG zusammenwohnen?
+ - Ganz einfach, wir schauen einfach wer die selben Ortskoordinaten besitzt incl. Stockwerk. Diese Information speichern wir in die Spalte ``count_wg``. Wenn es keinen WG gibt, kann der Wert auf Null gesetzt werden.
+
+ Warum ist das wichtig?
+ - Manchmal melden sich bei Spinfood sehr große WGs an. Wenn wir mehr als 3 Anmeldungen aus einer WG haben, die jeweils eine Küche stellen, wird es nicht zu vermeiden sein, dass die Küche überbelegt sein wird. Melden sich z.B. 4 Personen aus einer WG an und geben jeweils die Küche an, wird entweder die Vor, Haupt- oder Nachspeise doppelt belegt sein. Dann wird es zu eng in den Küchen. 
+
+ Was machen wir dagegen:
+ - Aktuell entfernen wir manuel Küchen aus dem Datensatz, damit es nicht mehr als 3 Küchen in einer WG gibt.
 
 ## Aufgabenstellung und Randbedingungen
 
