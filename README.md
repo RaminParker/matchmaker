@@ -78,8 +78,21 @@ Diese Spalten hängen wir einfach an den Datensatz mit dran.
  Warum ist das wichtig?
  - Manchmal melden sich bei Spinfood sehr große WGs an. Wenn wir mehr als 3 Anmeldungen aus einer WG haben, die jeweils eine Küche stellen, wird es nicht zu vermeiden sein, dass die Küche überbelegt sein wird. Melden sich z.B. 4 Personen aus einer WG an und geben jeweils die Küche an, wird entweder die Vor, Haupt- oder Nachspeise doppelt belegt sein. Dann wird es zu eng in den Küchen. 
 
- Was machen wir dagegen:
+ Was machen wir dagegen?
  - Aktuell entfernen wir manuel Küchen aus dem Datensatz, damit es nicht mehr als 3 Küchen in einer WG gibt.
+
+Wie sind die Altersgruppen?
+- Die Alterssgruppen ``agerange`` haben folgende Bins:
+    - 0-17 --> 1
+    - 18-23 --> 2
+    - 24-27 --> 3
+    - 28-30 --> 4
+    - 31-35 --> 5
+    - 36-41 --> 6
+    - 42-46 --> 7
+    - 47-56 --> 8
+    - 57-120 --> 9
+Die Aufteilung wurde damals nach Bauchgefühl gemacht. Wichtig ist, insbesondere die Zielgruppen genau zu kategorisieren (alles zwischen 20 und 28 Jahre). Danach werden die Altersprünge langsam größer.
 
 ## Aufgabenstellung und Randbedingungen
 
