@@ -43,6 +43,8 @@ Data columns (total 11 columns):
 dtypes: float64(4), int64(1), object(8)
 ````
 
+Nur bei Pärchenanmeldungen sind die Daten der zweiten Person belegt. Das sieht man auch am Datensatz im Ordner ``data``.
+
 - ``ID``: Einzigartiger Hashwert
 - ``Name``: Vollständiger Name des Teilnehmenden
 - ``FoodPreference``: Essensvorliebe
